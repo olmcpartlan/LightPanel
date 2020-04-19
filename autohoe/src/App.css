@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+  background-color: #292a2d;
+  height:1000px;
+  color: white;
+}
+
+.header {
+  background-color: beige;
+}
+
+.body {
+  width: 100%;
+}
+
+.chart-container {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.changergb {
+  margin: 20px;
+}
+
+
+.form-group {
+  margin: 20px;
+}
+
+.rgbinput {
+  width: 75%;
+}
+
+
