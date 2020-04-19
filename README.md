@@ -24,6 +24,7 @@ fetch(`https://10.0.0.53/api/${API_KEY}/lights/`)
 
 ##### Conversions from RGB to HSB/HSV
 * max/mid/min val refer to the RGB input values.
+
 | Color Identifier      | Conversion from RGB           | Value Type              |
 | :-------------------- | :---------------------------: | :---------------------: |
 | (H)ue                 | (mid val - min val) / max val | 0-360° (integer) |
