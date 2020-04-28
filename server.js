@@ -15,11 +15,13 @@ app.get('/status', function(req, res) {
       res.send(data)
     })
 })
-  
-app.get('/rgb', function(req, res) {
-  res.send(new RgbController([40,170,120])); 
+
+app.get('/rgb/:lightNo/:rgbVals/', function(req, res) {
+  var lightNumber = req.params.lightNo;
+  var rgbVals = req.params.rgbVals;
+  res.send(new RgbController().convertValues(lightNumber, rgbVals));
  })
- 
+
 
 // can successfully power on/off each light
 // if 3 is passed through, will handle both lights

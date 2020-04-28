@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class RgbForm extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +9,7 @@ class RgbForm extends Component {
       blue: "",
     }
   }
+
 
   setRed = (e) => {
     this.setState({
@@ -27,20 +27,18 @@ class RgbForm extends Component {
     })
   }
 
-  sendColors = () => {
-    fetch("http://localhost:5000/rgb", {
-      method: 'POST',
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        "rgb": [this.state.red, this.state.green, this.state.blue]
-      })
-    })
-      .then(res => res.json())
-      .then(res => console.log(res));
+  sendColors() {
+    fetch(`http://localhost:5000/rgb/${this.state.red}/${this.rgbToString}`)
+    .then(res => res.json())
+    .then(res => console.log(res));
+
   }
+
+
+  rgbToString() {
+    return this.state.red + this.state.green + this.state.blue
+  }
+
 
 
   render() {
@@ -59,7 +57,7 @@ class RgbForm extends Component {
             <p>Green:</p>
           </div>
           <div className="col">
-            <input onChange={this.green} className="form-control-sm rgbinput" />
+            <input onChange={this.setGreen} className="form-control-sm rgbinput" />
           </div>
         </div>
         <div className="row">
@@ -67,12 +65,16 @@ class RgbForm extends Component {
             <p>Blue:</p>
           </div>
           <div className="col">
-            <input onChange={this.blue} className="form-control-sm rgbinput" />
+            <input onChange={this.setBlue} className="form-control-sm rgbinput" />
           </div>
         </div>
 
         <div>
-          <button onClick={this.sendColors} className="btn btn-danger changergb">Change</button>
+          <button 
+            onClick={this.sendColors()} 
+            className="btn btn-danger changergb"
+          >Change
+          </button>
         </div>
 
       </div>
@@ -81,15 +83,26 @@ class RgbForm extends Component {
 }
 
 class HexForm extends Component {
+  sendColors() {
+    fetch(`http://localhost:5000/rgb/`, {
+      headers: {
+        "Acess-Control-Allow-Origin": "*"
+      }
+    })
+    .then(res => res.json())
+    .then(res => console.log(res));
+
+  }
   render() {
     return (
       <div>
         <p>Enter Hex Value:</p>
         <input className="form-control-sm" />
         <div>
-          <button className="btn btn-danger changergb">Change</button>
+          <button 
+          onClick={this.sendColors()}
+          className="btn btn-danger changergb">Change</button>
         </div>
-
       </div>
     )
   }

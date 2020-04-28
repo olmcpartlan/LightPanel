@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { RgbForm, HexForm } from './colorForms';
 
 
-export default class ColorChart extends Component {
+export default class ColorFormHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      colorNumber: this.props.colorId,
       componentIsVisible: true,
       rgbVisible: true,
     }
@@ -52,9 +53,10 @@ export default class ColorChart extends Component {
           </button>
         </div>
         <form className="form-group">
+          <p>{this.props.lightName}</p>
           {this.state.rgbVisible
-          ? <RgbForm />
-          : <HexForm />
+          ? <RgbForm lightNo={this.props.lightNo}/>
+          : <HexForm lightNo={this.props.lightNo}/>
           }
         </form>
 

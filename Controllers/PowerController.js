@@ -24,7 +24,7 @@ class PowerController {
       console.log(reqBody);
 
       for(let i = 1; i < 4; i++) {
-        
+
         request.put({
           rejectUnauthorized: false,
           url: `${basePath}/${i}/state/on`,

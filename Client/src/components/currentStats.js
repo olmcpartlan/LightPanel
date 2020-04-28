@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LightObject from './LightObject';
 import ReactInterval from 'react-interval';
 import ReactDOM from 'react-dom';
+import ColorFormHeader from './colorFormHeader';
 
 export default class CurrentStatus extends Component {
   constructor(props) {
@@ -14,6 +15,8 @@ export default class CurrentStatus extends Component {
       loadingApi: true,
       intervalId: "",
       currentColorFormId: 0,
+      colorFormVisible: false,
+      selectedLightName: ''
     };
   }
 
@@ -36,7 +39,7 @@ export default class CurrentStatus extends Component {
           deskPower: res[1],
           lampPower: res[2],
           spotPower: res[3],
-          loadingApi: false
+          loadingApi: false,
         })
         console.log(this.state.overallPower)
       })
@@ -45,40 +48,61 @@ export default class CurrentStatus extends Component {
       .catch(err => console.log("ERROR: " + err));
   }
 
-  showColorForm = (lightNumber) => {
-    console.log(lightNumber);
+
+  // need to get the ID of each light from the LightObject
+  // then pass that ID into the color form to be sent with the request
+
+  setLightId(lightId, lightName) {
+    this.setState({
+      currentColorFormId: lightId,
+      colorFormVisible: true,
+      selectedLightName: lightName
+    })
   }
 
-  // The plan is to set an interval for the lightobjects 
-  // If the lights change, the component will need to update to reflect it
-  // I can forcefully reload it once a value has been changed,
-  // as well as setting the interval
-
   render() {
-
     // First condition is met if the api is finished loading, 
     // Second condition is checking the state value of the light 
-    //   Cant render a boolean
+
+    // Cant render a boolean
     return (
       <div>
         {!this.state.loadingApi
           ?
           <div className="row">
             <div className="col">
-              <LightObject response={this.state.deskPower} />
-            </div>
-            <div className="col">
-              <LightObject response={this.state.lampPower} />
+              <LightObject 
+                currentLightId={this.state.currentColorFormId}
+                setSelectedLight={this.setLightId.bind(this)} 
+                response={this.state.deskPower} 
+              />
             </div>
             <div className="col">
               <LightObject 
+                currentLightId={this.state.currentColorFormId}
+                setSelectedLight={this.setLightId.bind(this)} 
+                response={this.state.lampPower} 
+              />
+            </div>
+            <div className="col">
+              <LightObject 
+                currentLightId={this.state.currentColorFormId}
+                setSelectedLight={this.setLightId.bind(this)} 
                 response={this.state.spotPower} 
-                showColorForm={this.showColorForm}
               />
             </div>
           </div>
 
           : <p>Loading...</p>
+        }
+        <p></p>
+        {this.state.colorFormVisible
+        ? 
+        <ColorFormHeader 
+          lightName={this.state.selectedLightName}
+          lightNumber={this.state.currentColorFormId} 
+        />
+        : <p></p>
         }
 
       </div>

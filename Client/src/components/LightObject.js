@@ -9,7 +9,8 @@ export default class LightObject extends Component{
       lightHue: this.props.response.state.hue,
       lightSat: this.props.response.state.sat,
       lightBrightness: this.props.response.state.bri,
-      lightNumber: 0
+      lightNumber: 0,
+      colorButtonText: "btn btn-outline-secondary"
     }
     console.log(this.state)
   }
@@ -34,10 +35,15 @@ export default class LightObject extends Component{
         lightNumber: 3
       })
     }
+
+
+    // the first time the form is clicked, the id is 0
+    // its fine after the first click
+
   }
 
+
   setPower = () => {
-    console.log(this.state.lightName);
     const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
     let lightNumber = this.state.lightNumber;
     var path = `http://localhost:5000/power/${lightNumber}/${this.state.lightStatus}/`;
@@ -49,8 +55,16 @@ export default class LightObject extends Component{
       .then(window.history.go(0))
   }
 
+  changeColor = () => {
+    this.setState({
+      colorButtonText: "btn btn-success"
+    })
+  }
+
   // Have to use conditional rendering because js will 
-  // not render boolean values
+  // not render booleans
+
+
   render() {
     return (
       <div>
@@ -61,8 +75,8 @@ export default class LightObject extends Component{
               }
         <button className="btn btn-outline-primary" onClick={this.setPower}>Power</button>
         <button 
-          className="btn btn-outline-secondary" 
-          onClick={}
+          className={this.state.colorButtonText}
+          onClick={() => this.props.setSelectedLight(this.state.lightNumber, this.state.lightName)}
         >Colors</button>
 
       </div>
