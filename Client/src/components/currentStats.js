@@ -27,7 +27,7 @@ export default class CurrentStatus extends Component {
 
 
   componentDidMount() {
-    fetch("https://10.0.0.53/api/c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za/lights/")
+    fetch("http://localhost:5000/status")
       .then(res => res.json())
       .then(res => {
         this.setState({
@@ -61,8 +61,8 @@ export default class CurrentStatus extends Component {
   }
 
   render() {
-    // First condition is met if the api is finished loading, 
-    // Second condition is checking the state value of the light 
+    // First condition is met if the api is finished loading,
+    // Second condition is checking the state value of the light
 
     // Cant render a boolean
     return (
@@ -71,24 +71,24 @@ export default class CurrentStatus extends Component {
           ?
           <div className="row">
             <div className="col">
-              <LightObject 
+              <LightObject
                 currentLightId={this.state.currentColorFormId}
-                setSelectedLight={this.setLightId.bind(this)} 
-                response={this.state.deskPower} 
+                setSelectedLight={this.setLightId.bind(this)}
+                response={this.state.deskPower}
               />
             </div>
             <div className="col">
-              <LightObject 
+              <LightObject
                 currentLightId={this.state.currentColorFormId}
-                setSelectedLight={this.setLightId.bind(this)} 
-                response={this.state.lampPower} 
+                setSelectedLight={this.setLightId.bind(this)}
+                response={this.state.lampPower}
               />
             </div>
             <div className="col">
-              <LightObject 
+              <LightObject
                 currentLightId={this.state.currentColorFormId}
-                setSelectedLight={this.setLightId.bind(this)} 
-                response={this.state.spotPower} 
+                setSelectedLight={this.setLightId.bind(this)}
+                response={this.state.spotPower}
               />
             </div>
           </div>
@@ -97,10 +97,10 @@ export default class CurrentStatus extends Component {
         }
         <p></p>
         {this.state.colorFormVisible
-        ? 
-        <ColorFormHeader 
+        ?
+        <ColorFormHeader
           lightName={this.state.selectedLightName}
-          lightNumber={this.state.currentColorFormId} 
+          lightNumber={this.state.currentColorFormId}
         />
         : <p></p>
         }

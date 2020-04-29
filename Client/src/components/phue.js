@@ -15,11 +15,10 @@ export default class PHueSettings extends Component {
 
 
   componentDidMount() {
-    const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
-    fetch(`https://10.0.0.53/api/${creds}/lights/`)
+      fetch('http://localhost:5000/status')
       .then(res => res.json())
       .then(res => console.log(res))
-      
+
   }
 
   colorsHover = () => {
