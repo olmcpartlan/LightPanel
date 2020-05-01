@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const currentStatus = require('./currentStatus');
+const rgbToHsv = require('./Methods/rgbToHsv')
 app.use(cors());
 
 
@@ -30,10 +31,9 @@ app.get('/status', function(req, res) {
 
 })
   
-app.get('/rgb', function(req, res) {
-  res.send(new RgbController([40,170,120])); 
- })
- 
+app.get('/rgb/rgbToHsv/:r/:g/:b/:lightNo', function(req, res) {
+  res.send(rgbToHsv(req.params.r, req.params.g, req.params.b, req.params.lightNo));
+});
 
 // can successfully power on/off each light
 // if 3 is passed through, will handle both lights

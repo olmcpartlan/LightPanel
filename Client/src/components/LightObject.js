@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 
 export default class LightObject extends Component{
   constructor(props) {
@@ -61,7 +61,7 @@ export default class LightObject extends Component{
     })
   }
 
-  // Have to use conditional rendering because js will 
+  // Have to use conditional rendering because js will
   // not render booleans
 
 
@@ -74,7 +74,7 @@ export default class LightObject extends Component{
                 : <p>Off</p>
               }
         <button className="btn btn-outline-primary" onClick={this.setPower}>Power</button>
-        <button 
+        <button
           className={this.state.colorButtonText}
           onClick={() => this.props.setSelectedLight(this.state.lightNumber, this.state.lightName)}
         >Colors</button>

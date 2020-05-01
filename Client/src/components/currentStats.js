@@ -61,10 +61,7 @@ export default class CurrentStatus extends Component {
   }
 
   render() {
-    // First condition is met if the api is finished loading,
-    // Second condition is checking the state value of the light
 
-    // Cant render a boolean
     return (
       <div>
         {!this.state.loadingApi
@@ -100,7 +97,7 @@ export default class CurrentStatus extends Component {
         ?
         <ColorFormHeader
           lightName={this.state.selectedLightName}
-          lightNumber={this.state.currentColorFormId}
+          lightNo={this.state.currentColorFormId}
         />
         : <p></p>
         }

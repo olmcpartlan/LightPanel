@@ -12,6 +12,7 @@ export default class ColorFormHeader extends Component {
     }
   }
 
+
   showRgb = () => {
     if(this.state.rgbVisible) {
       // pass
@@ -39,13 +40,13 @@ export default class ColorFormHeader extends Component {
     return (
       <div className="container">
         <div className="btn-group" roles="group">
-          <button 
+          <button
             className="btn btn-secondary"
             onClick={this.showRgb}
           >
             RGB
           </button>
-          <button 
+          <button
             className="btn btn-secondary"
             onClick={this.showHex}
           >

@@ -10,6 +10,12 @@ class RgbForm extends Component {
     }
   }
 
+  componentDidMount() {
+    fetch('http://localhost:5000/status')
+      .then(res => res.json())
+      .then(res => console.log(res))
+  }
+
 
   setRed = (e) => {
     this.setState({
@@ -27,16 +33,17 @@ class RgbForm extends Component {
     })
   }
 
-  sendColors() {
-    fetch(`http://localhost:5000/rgb/${this.state.red}/${this.rgbToString}`)
-    .then(res => res.json())
-    .then(res => console.log(res));
-
+  rgbToString() {
+    return `${this.state.red}/${this.state.green}/${this.state.blue}`
   }
 
-
-  rgbToString() {
-    return this.state.red + this.state.green + this.state.blue
+  sendColors = (e) => {
+    e.preventDefault();
+    console.log(this.state.red)
+    fetch(`http://localhost:5000/rgb/rgbToHsv/${this.rgbToString()}/${this.props.lightNo}`)
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
 
@@ -70,8 +77,8 @@ class RgbForm extends Component {
         </div>
 
         <div>
-          <button 
-            onClick={this.sendColors()} 
+          <button
+            onClick={this.sendColors}
             className="btn btn-danger changergb"
           >Change
           </button>
@@ -99,7 +106,7 @@ class HexForm extends Component {
         <p>Enter Hex Value:</p>
         <input className="form-control-sm" />
         <div>
-          <button 
+          <button
           onClick={this.sendColors()}
           className="btn btn-danger changergb">Change</button>
         </div>
