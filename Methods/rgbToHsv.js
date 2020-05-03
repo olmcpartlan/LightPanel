@@ -1,4 +1,5 @@
-var request = require('request');
+const fetch = require('node-fetch');
+const request = require('request');
 
 module.exports = function (r, g, b, lightNo) {
   var computedH = 0;
@@ -39,22 +40,30 @@ module.exports = function (r, g, b, lightNo) {
   const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
   // calling just this route will show all attributes of the lights
   const basePath = `http://10.0.0.53/api/${creds}/lights`
-  console.log(`${basePath}/${lightNo}/state`);
-  request.post({
-    rejectUnauthorized: false,
-    url: `${basePath}/${lightNo}/state`,
+  fetch(`${basePath}/${lightNo}/state`, {
+    method: 'PUT',
     body: JSON.stringify({
       "hue": ((computedH/4) * 3 * 255),
-    }, function(err, res, resBody) {
-      if(err) console.log(err);
-      else {
-        console.log(res);
-      }
     })
-  })
-  // TEST
 
+  })
+    .then(res => res.json())
+    .then(res => console.log(res));
 
   return [computedH, computedS, computedV];
 
 }
+
+/*
+  request.put({
+    rejectUnauthorized: false,
+    url: `${basePath}/${lightNo}/state`,
+
+    body: JSON.stringify({
+      "hue": ((computedH/4) * 3 * 255),
+    }, 
+    function(err, res, resBody) {
+
+    })
+  });
+  */

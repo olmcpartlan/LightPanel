@@ -10,7 +10,6 @@ app.use(cors());
 
 var port = 5000
 
-const RgbController = require('./Controllers/RgbController');
 const PowerController = require('./Controllers/PowerController');
 
 
@@ -18,7 +17,7 @@ const PowerController = require('./Controllers/PowerController');
 app.get('/status', function(req, res) {
   const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
 
-  const basePath = `https://10.0.0.53/api/${creds}/lights`
+  const basePath = `http://10.0.0.53/api/${creds}/lights`
 
   request.get({
     url: basePath,
