@@ -27,7 +27,7 @@ export default class CurrentStatus extends Component {
 
 
   componentDidMount() {
-    fetch("http://localhost:5000/status")
+    fetch("http://10.0.0.77:5000/status")
       .then(res => res.json())
       .then(res => {
         this.setState({

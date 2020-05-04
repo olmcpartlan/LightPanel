@@ -46,7 +46,7 @@ export default class LightObject extends Component{
   setPower = () => {
     const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
     let lightNumber = this.state.lightNumber;
-    var path = `http://localhost:5000/power/${lightNumber}/${this.state.lightStatus}/`;
+    var path = `http://10.0.0.77:5000/power/${lightNumber}/${this.state.lightStatus}/`;
     fetch(path)
       .then(res => res.json())
       .then(res => {

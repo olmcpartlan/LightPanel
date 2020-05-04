@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+/*
+  need form validation for 0-255
+  need quick colors, buttons for red, blue, purple, orange,etc
+  as well as a current rgb conversion onload from the backend
+*/
+
 class RgbForm extends Component {
   constructor(props) {
     super(props);
@@ -7,13 +13,32 @@ class RgbForm extends Component {
       red: "",
       green: "",
       blue: "",
+      currentLight: []
     }
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/status')
+    fetch('http://10.0.0.77:5000/status')
       .then(res => res.json())
-      .then(res => console.log(res))
+      .then(res => {
+        let currentLight = res[this.props.lightNo]
+        this.setState({
+          currentLight: currentLight
+        })
+        console.log(this.state.currentLight);
+      })
+  }
+
+  getCurrentRGB() {
+    fetch('http://10.0.0.77:5000/currentRGB')
+      .then(res => res.json())
+      .then(res => console.log(res));
+  }
+
+  brightnessSlide = (e) => {
+    this.setState({
+      brightness: e.target.value
+    })
   }
 
 
@@ -40,7 +65,7 @@ class RgbForm extends Component {
   sendColors = (e) => {
     e.preventDefault();
     console.log(this.state.red)
-    fetch(`http://localhost:5000/rgb/rgbToHsv/${this.rgbToString()}/${this.props.lightNo}`)
+    fetch(`http://10.0.0.77:5000/rgb/rgbToHsv/${this.rgbToString()}/${this.props.lightNo}`)
       .then(res => res.json())
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -51,11 +76,21 @@ class RgbForm extends Component {
   render() {
     return (
       <div>
+        <div>
+          <p></p>
+        </div>
         <div className="row">
           <div className="col">
+            <p>Brightness</p>
+            <input
+              type="range"
+              className="form-control-range"
+              onChange={this.brightnessSlide}/>
             <p>Red:</p>
           </div>
           <div className="col">
+            <p>Saturation</p>
+            <input type="range" className="form-control-range" id="formControlRange"/>
             <input onChange={this.setRed} className="form-control-sm rgbinput" />
           </div>
         </div>
@@ -91,7 +126,7 @@ class RgbForm extends Component {
 
 class HexForm extends Component {
   sendColors() {
-    fetch(`http://localhost:5000/rgb/`, {
+    fetch(`http://10.0.0.77:5000/rgb/`, {
       headers: {
         "Acess-Control-Allow-Origin": "*"
       }
