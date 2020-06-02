@@ -1,12 +1,16 @@
 ### Light Panel
+This project was hosted on a raspberry pi, however it now functions as a hub for my own personal use.
+
+The Philips Hue API is very straight-forward and is quite fun to work with. I encourage the reader to use this code as a template for a project of their own.
+
+
 Communicates with:
+
 * ###### Philips Hue API
   - Call the API via PUT requests to change Power Status and Color
   - React form can accept colors in Hex and RGB
   - Both are converted into _HSB_ (Hue, Saturation, Brightness)
-  - An example of the connection to the Hue API can be found [here](server/Controllers/PowerController.js)
-* ###### Will connecto to OpenWeatherMaps API to display current weather
-* ###### Potentially connect to the Spotify API to display a media player because why not
+* ###### Currently working on connecting to OpenWeatherMaps API to display current weather
 
 ##### Example call to Philips Hue API:
 ```javascript
