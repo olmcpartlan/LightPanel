@@ -3,6 +3,8 @@ This project was hosted on a raspberry pi, however it now functions as a hub for
 
 The Philips Hue API is very straight-forward and is quite fun to work with. I encourage the reader to use this code as a template for a project of their own.
 
+Color Changing Demo:
+![Light Demo](./Client/public/light_demo.gif)
 
 Communicates with:
 

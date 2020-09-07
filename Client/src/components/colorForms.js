@@ -18,7 +18,7 @@ class RgbForm extends Component {
   }
 
   componentDidMount() {
-    fetch('http://10.0.0.77:5000/status')
+    fetch('http://10.0.0.65:5000/status')
       .then(res => res.json())
       .then(res => {
         let currentLight = res[this.props.lightNo]
@@ -30,7 +30,7 @@ class RgbForm extends Component {
   }
 
   getCurrentRGB() {
-    fetch('http://10.0.0.77:5000/currentRGB')
+    fetch('http://10.0.0.65:5000/currentRGB')
       .then(res => res.json())
       .then(res => console.log(res));
   }
@@ -65,7 +65,7 @@ class RgbForm extends Component {
   sendColors = (e) => {
     e.preventDefault();
     console.log(this.state.red)
-    fetch(`http://10.0.0.77:5000/rgb/rgbToHsv/${this.rgbToString()}/${this.props.lightNo}`)
+    fetch(`http://10.0.0.65:5000/rgb/rgbToHsv/${this.rgbToString()}/${this.props.lightNo}`)
       .then(res => res.json())
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -126,7 +126,7 @@ class RgbForm extends Component {
 
 class HexForm extends Component {
   sendColors() {
-    fetch(`http://10.0.0.77:5000/rgb/`, {
+    fetch(`http://10.0.0.65:5000/rgb/`, {
       headers: {
         "Acess-Control-Allow-Origin": "*"
       }

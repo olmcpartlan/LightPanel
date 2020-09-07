@@ -6,6 +6,7 @@ module.exports = function (r, g, b, lightNo) {
   var computedS = 0;
   var computedV = 0;
 
+
   //remove spaces from input RGB values, convert to int
   var r = parseInt(('' + r).replace(/\s/g, ''), 10);
   var g = parseInt(('' + g).replace(/\s/g, ''), 10);
@@ -40,6 +41,9 @@ module.exports = function (r, g, b, lightNo) {
   const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
   // calling just this route will show all attributes of the lights
   const basePath = `http://10.0.0.53/api/${creds}/lights`
+
+  console.log(`${basePath}/${lightNo}/state`);
+
   fetch(`${basePath}/${lightNo}/state`, {
     method: 'PUT',
     body: JSON.stringify({

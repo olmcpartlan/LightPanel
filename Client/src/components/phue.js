@@ -15,7 +15,7 @@ export default class PHueSettings extends Component {
 
 
   componentDidMount() {
-      fetch('http://10.0.0.77:5000/status')
+      fetch('http://10.0.0.65:5000/status')
       .then(res => res.json())
       .then(res => console.log(res))
 
