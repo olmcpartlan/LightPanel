@@ -4,23 +4,22 @@ This project was hosted on a raspberry pi, however it now functions as a hub for
 The Philips Hue API is very straight-forward and is quite fun to work with. I encourage the reader to use this code as a template for a project of their own.
 
 Color Changing Demo:
-![Light Demo](./Client/public/light_demo.gif)
 
-Communicates with:
+
+<img src="./Client/public/light_demo.gif" alt="Light Demo" width="500" height="500">
 
 * ###### Philips Hue API
   - Call the API via PUT requests to change Power Status and Color
   - React form can accept colors in Hex and RGB
   - Both are converted into _HSB_ (Hue, Saturation, Brightness)
-* ###### Currently working on connecting to OpenWeatherMaps API to display current weather
 
 ##### Example call to Philips Hue API:
 ```javascript
-fetch(`https://10.0.0.53/api/${API_KEY}/lights/`)
+fetch(`https://${YOUR_BRIDGE_IP}/api/${YOUR_API_KEY}/lights/`)
   .then(res => res.json())
   .finally(res => console.log(res));
 ```
-* This GET request will respond with a promise containing the data from all Philips Hue lights connected to the [bridge](https://www2.meethue.com/en-us/p/hue-bridge/046677458478 "Information on Philips Hue Bridge") on `10.0.0.53`
+* This GET request will respond with a promise containing the data from all Philips Hue lights connected to the [bridge](https://www2.meethue.com/en-us/p/hue-bridge/046677458478 "Information on Philips Hue Bridge") on `YOUR_BRIDGE_IP`
 * The response will be a list of light objects that contain information like:
   - Current HSB Values
   - Current Power Status
