@@ -1,5 +1,6 @@
 const https = require('https');
 const request = require('request');
+const creds = require('../creds');
 
 
 class PowerController {
@@ -10,12 +11,11 @@ class PowerController {
 
 
   PowerAll(isPoweredOn) {
-    // hue designed api creds
-    const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
-    // calling just this route will show all attributes of the lights
+    // /lights all attributes of the lights
     const basePath = `http://10.0.0.53/api/${creds}/lights`
 
 
+    // power all on/off by passing a 4 as a light number
     if (this.lightNumber == 4) {
       console.log(`Lights are no longer ${this.isPowered}`);
       var reqBody = JSON.stringify({
@@ -38,10 +38,6 @@ class PowerController {
 
 
     else {
-    // hue designed api creds
-    const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
-    // calling just this route will show all attributes of the lights
-    const basePath = `http://10.0.0.53/api/${creds}/lights`
 
       console.log(`Powering light number ${this.lightNumber}`)
       var flippedValue;
@@ -51,15 +47,12 @@ class PowerController {
       }
       else flippedValue = true;
 
-      //****** */ manually changing this is the only way to get it to work right now
       var body = {
         "on": flippedValue,
       }
 
       console.log(body);
 
-      // the correct way to send the request is to specify the CA path
-      // spent way too much time working on openSLL, will come back to it
       request({
         method: "PUT",
         rejectUnauthorized: false,

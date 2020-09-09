@@ -1,6 +1,8 @@
 const fetch = require('node-fetch');
 const request = require('request');
 
+const creds = require('../creds');
+
 module.exports = function (r, g, b, lightNo) {
   var computedH = 0;
   var computedS = 0;
@@ -36,14 +38,11 @@ module.exports = function (r, g, b, lightNo) {
   computedS = (maxRGB - minRGB) / maxRGB;
   computedV = maxRGB;
 
-  // TEST
 
-  const creds = 'c-LnJbausk8uaidwuiYSH0dMAVBoeSIqWBGQ31za';
-  // calling just this route will show all attributes of the lights
+
   const basePath = `http://10.0.0.53/api/${creds}/lights`
 
-  console.log(`${basePath}/${lightNo}/state`);
-
+  // supply the new values and adjust the hue values. the saturation does not need to be changed
   fetch(`${basePath}/${lightNo}/state`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -57,17 +56,3 @@ module.exports = function (r, g, b, lightNo) {
   return [computedH, computedS, computedV];
 
 }
-
-/*
-  request.put({
-    rejectUnauthorized: false,
-    url: `${basePath}/${lightNo}/state`,
-
-    body: JSON.stringify({
-      "hue": ((computedH/4) * 3 * 255),
-    }, 
-    function(err, res, resBody) {
-
-    })
-  });
-  */
