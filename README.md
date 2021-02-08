@@ -1,10 +1,12 @@
 ### Light Panel
-This project was hosted on a raspberry pi, however it now functions as a hub for my own personal use.
+
+##### Project Description:
+
+This application communicates with Philips Hue lights on the User's network. Functionality includes turning lights on/off, updating the color/brightness, and creating scheduled routines.
 
 The Philips Hue API is very straight-forward and is quite fun to work with. I encourage the reader to use this code as a template for a project of their own.
 
-Color Changing Demo:
-
+This project was hosted on a raspberry pi, however it now functions as a hub for my own personal use. To see the functionality of the application, here is a demo of updating the light's saturation value: 
 
 <img src="./Client/public/light_demo.gif" alt="Light Demo" width="500" height="500">
 
