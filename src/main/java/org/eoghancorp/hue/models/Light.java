@@ -10,14 +10,20 @@ public class Light {
     private String modelid;
     private String manufacturername;
     private String productname;
-    private Date uniqueid;
+    private Capabilities capabilities;
+    private Config config;
+    private String uniqueid;
     private String swversion;
     private String swconfigid;
     private String productid;
 
+    public Capabilities getCapabilities() { return capabilities; }
+
+    public Config getConfig() { return config; }
+
     public String getName() { return name; }
 
-    public Date getUniqueid() { return uniqueid; }
+    public String getUniqueid() { return uniqueid; }
 
     public State getState() { return state; }
 
@@ -51,13 +57,17 @@ public class Light {
 
     public void setSwconfigid(String swconfigid) { this.swconfigid = swconfigid; }
 
+    public void setCapabilities(Capabilities capabilities) { this.capabilities = capabilities; }
+
+    public void setConfig(Config config) { this.config = config; }
+
     public void setSwupdate(SwUpdate swupdate) { this.swupdate = swupdate; }
 
     public void setSwversion(String swversion) { this.swversion = swversion; }
 
     public void setType(String type) { this.type = type; }
 
-    public void setUniqueid(Date uniqueid) { this.uniqueid = uniqueid; }
+    public void setUniqueid(String uniqueid) { this.uniqueid = uniqueid; }
 }
 
 
